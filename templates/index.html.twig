@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Таблица с данными{% endblock %}
+
+{% block body %}
+
+<table id="table-id" class="table">
+    <caption>
+        Таблица с данными с сайта lovikupon
+    </caption>
+        <thead>
+            <tr>
+                <th><a href="\">id</a></th>
+                <th>Название акции</th>
+                <th>Ссылка на акцию</th>
+                <th><a href="/?sort_by=validuntil">Дата и время окончания</a></th>
+                <th><a href="/?sort_by=countdown">Срок действия</a></th>
+                <th>Картинка</th>
+            </tr>
+        </thead>
+{% for row in parsed_data %}
+    <tr>
+        <td>{{ row.getId() }}</td>
+        <td>{{ row.getTitle() }}</td>
+        <td><a href={{row.getLink()}}>{{ row.getLink() }}</a></td>
+        <td>{{ row.getValiduntil() | date('Y-m-d H:i:s') }}</td>
+        <td>{{ row.getCountdown() // 24 }} дней {{row.getCountdown() % 24 }} часов</td>
+        <td><a href={{row.getImg()}}>{{ row.getImg() }}</a></td>
+    <tr>
+{% endfor %}
+
+</table>
+{% endblock %}
