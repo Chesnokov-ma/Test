@@ -70,7 +70,7 @@ mysql> exit
 3. Создать таблицу, запустить парсер и web-сервер (см. Прим.):
 ```bash
 php bin/console doctrine:schema:create
-php bin\console app:parser
+php bin/console app:parser
 php -S localhost:8000 -t public
 ```
 4. Войти на локальный сайт:
