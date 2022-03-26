@@ -36,7 +36,8 @@ class ParseDataFromSite     // parser
         foreach ($valid_until as $valid)
         {
             $valid_until_string = $valid->find('div')[0]->innertext . " 00:00:00";
-            $this->parsed_data['validuntil'][] = date("Y-m-d H:i:s", strtotime($valid_until_string));
+            $this->parsed_data['validuntil'][] = \DateTime::createFromFormat("Y-m-d H:i:s", 
+                                                date("Y-m-d H:i:s", strtotime($valid_until_string)));
 
             $valid_until_time = new \DateTime($valid_until_string);     // срок действия расчитается как (дата и время окончания - дата и время сейчас) в часах
             $now_time = new \DateTime();
